@@ -1,12 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-*,body,html{
-	font-family: 'Roboto', sans-serif;scroll-behavior: smooth;
-}
+*,body,html{font-family: 'Roboto', sans-serif;scroll-behavior: smooth;}
 .bg-grey{background-color: #E5E5E5;}
 .bg-header{
 	background: linear-gradient(-45deg, rgba(000, 000, 000, .6), rgba(000, 000, 000, .8)) fixed, url('img/header.png') fixed;
-	height: 50vh;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+.btn-success{background: #27AE60 !important;}
+.text-black{color:#000;}
+.height-10{height: 10vh;}
+.form-dotted{border-style: dashed !important;border: 1px solid #67696b;}
+.form-control{border: 1px solid #67696b;padding: 30px 20px !important;}
+.form-icon{position: absolute;top: 40%;left: 8%;}
+.scan-icon{position: absolute;top: 40%;left: 10%;}
+.pointer{cursor: pointer;}
+#QRCode{text-align: center;font-size: 25px;}
+/*
+*********************************************Responsive css*********************************************
+*/
+/*Desktop Only*/
+@media only screen and (min-width: 600px) {
+	.height-md-40{height: 40vh;}
+	.icon-pl{padding-left: 75px !important;}
+	.scan-pl{padding-left: 80px !important;}
+	.w-md-25{width: 60% !important;}
+	.w-md-10{width: 10%;}
+}
+/*mobile Only*/
+@media only screen and (max-width: 600px) {
+	.height-md-40{height: 60vh;}
+	.px-sm-4{padding-left: 1.5rem!important;padding-right: 1.5rem!important;}
+	.w-sm-75{width: 75%;}
+	.align-sm-center{text-align: center;}
+	.icon-pl{padding-left: 45px !important;}
+	.scan-pl{padding-left: 60px !important;}
+	.w-xs-100{width: 100%;}
 }
