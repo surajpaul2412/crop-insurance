@@ -31,20 +31,20 @@
 		</div>
 	</section>
 	<section class="container my-5" style="max-width: 1150px;">
-		<form action="" class="bg-white">
+		<form action="otp.html" method="GET" class="bg-white">
 			<div class="form-group px-5 px-sm-4 pt-5 pb-1">
 				<div class="text-black font-weight-normal">Enter Your Basic Detail</div>
 				<div class="row">
 					<div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control mt-3 py-4 icon-pl phone" name="phone" placeholder="Enter phone number*">
-						<img src="img/phone.png" width="30px" class="form-icon">
-					</div>
-					<div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control mt-3 py-4 icon-pl" name="" placeholder="Enter your namer*">
+						<input type="text" class="form-control mt-3 py-4 icon-pl" name="name" placeholder="Enter your namer*" required>
 						<img src="img/user.png" width="30px" class="form-icon">
 					</div>
 					<div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control mt-3 py-4 icon-pl" name="" placeholder="Enter your Pincode*">
+						<input type="text" class="form-control mt-3 py-4 icon-pl" name="phone" placeholder="Enter phone number*" required>
+						<img src="img/phone.png" width="30px" class="form-icon">
+					</div>
+					<div class="form-group col-12 col-md-4">
+						<input type="text" class="form-control mt-3 py-4 icon-pl" name="pincode" placeholder="Enter your Pincode*" required>
 						<img src="img/user.png" width="30px" class="form-icon">
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 				<div class="text-black font-weight-normal">Scanned Code</div>
 				<div class="row">				
 					<div class="form-group col-12 col-md-6">
-						<input type="text" class="form-control form-dotted mt-3 w-md-25 w-xs-100 font-weight-bold text-black" id="QRCode" name="" placeholder="Your QR Code">
+						<input type="text" class="form-control form-dotted mt-3 w-md-25 w-xs-100 font-weight-bold text-black" id="QRCode" name="qr_code" placeholder="Your QR Code">
 					</div>
 				</div>
 				<div class="mt-3">
@@ -68,26 +68,16 @@
 				<div class="text-black font-weight-normal">Add More Coupon Code</div>
 				<div class="row">				
 					<div class="form-group col-12 col-md-6">
-						<input type="text" class="form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl" name="" placeholder="Scan QR Code">
+						<input type="text" class="form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl" name="qr_code" placeholder="Scan QR Code">
 						<img src="img/scanner.png" width="30px" class="scan-icon">
 					</div>
 				</div>
 				<div class="align-sm-center">
-					<button class="btn btn-success rounded-pill w-sm-75 mt-4 generateOtp" type="button">submit</button>
+					<button class="btn btn-success rounded-pill w-sm-75 mt-4" type="submit">submit</button>
 				</div>
 			</div>
 		</form>
 	</section>
-<!-- try -->
-<form action="otp.html" method="GET">
-    <input type="text" name="serialNumber" />
-    <input type="submit" value="Submit" />
-</form>
-  <br />
-<div class="result"></div>
-</div>
-<!-- try -->
-
 
 	<!-- JQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -103,30 +93,15 @@
 		var link = window.location.href;
 		var pathArray = link.split("=");
 		var secondLevelLocation = pathArray[0];
-		document.getElementById("QRCode").value = pathArray[1];
+		if(pathArray[1] === undefined){
+			$('#QRCode').val('');
+		}else{
+			document.getElementById("QRCode").value = pathArray[1];
+		}
+		
 		// Remove existing QRCode
 		$('#QRCodeRemove').click(function() {
 		    $('#QRCode').val('');
-		});
-	</script>
-
-
-	<script>
-        $(document).ready(function () {
-		  $(".generateOtp").click(function () {
-		  		let person = { "data":{"phone_number": $('.phone').val(),"send_otp_on_non_prod":false} }
-
-		        $.ajax({
-		            url: 'https://core.api.agrevolution.in/auth/otp?app_code=dehaat_farmer',
-		            type: 'post',
-		            dataType: 'json',
-		            contentType: 'application/json',
-		            success: function (data) {
-		                $('.result').html(data.msg);
-		            },
-		            data: JSON.stringify(person)
-		        });
-	        });
 		});
 	</script>
 </body>

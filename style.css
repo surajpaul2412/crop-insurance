@@ -16,6 +16,7 @@
 .scan-icon{position: absolute;top: 40%;left: 10%;}
 .pointer{cursor: pointer;}
 #QRCode{text-align: center;font-size: 25px;}
+.form-control{border: 2px solid #6FCF97 !important;}
 /*
 *********************************************Responsive css*********************************************
 */

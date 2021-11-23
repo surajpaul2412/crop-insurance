@@ -19,92 +19,83 @@
 <body class="bg-grey">
 	<section>
 		<div class="px-4 height-10">
-			<img src="img/logo-green.png" width="110px" alt="logo">
+			<img src="img/logo-green.png" width="120px" alt="logo">
 		</div>
-		<div class="px-4 py-4" align="center">
+		<div class="px-4 py-4" align="center" style="max-width: 400px;margin: 0 auto;">
 			<img src="img/otp.png" class="py-5" width="30%">
 			<h2 class="text-dark font-weight-bold">OTP Validation</h2>
 			<p>
 				A new OTP was generated and sent at [Date and Time] to [Farmer Name] on [Farmer Mobile number]. Please enter the latest verification code to proceed.
 			</p>
-			<!-- try -->
 			<form action="">
 				<div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-		              <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="fourth"
-		              maxlength="1" /> 
-		          
-		            <div class="mt-4"> <button class="btn btn-danger px-4 validate">Validate</button> </div>
+		            <input class="m-2 text-center form-control rounded first" type="text" id="first" maxlength="1" />
+		            <input class="m-2 text-center form-control rounded second" type="text" id="second" maxlength="1" />
+		            <input class="m-2 text-center form-control rounded third" type="text" id="third" maxlength="1" />
+		            <input class="m-2 text-center form-control rounded fourth" type="text" id="fourth" maxlength="1" />
+		        </div>
+		        <div class="mt-4"> <button class="btn btn-success rounded-pill verifyOtp" type="button">Send OTP</button> </div>
+		        <div class="mt-4 d-none">
+		        	<div class="text-grey font-weight-bold">Didn’t send OTP code?</div>
+		        	<a class="text-success font-weight-bold" href=""><u>Resend Code</u></a>
 		        </div>
 			</form>
-			<style type="text/css">
-.height-100 {
-    height: 100vh
-}
-
-.card {
-    width: 400px;
-    border: none;
-    height: 300px;
-    box-shadow: 0px 5px 20px 0px #d2dae3;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.card h6 {
-    color: red;
-    font-size: 20px
-}
-
-.inputs input {
-    width: 40px;
-    height: 40px
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0
-}
-
-.card-2 {
-    background-color: #fff;
-    padding: 10px;
-    width: 350px;
-    height: 100px;
-    bottom: -50px;
-    left: 20px;
-    position: absolute;
-    border-radius: 5px
-}
-
-.card-2 .content {
-    margin-top: 50px
-}
-
-.card-2 .content a {
-    color: red
-}
-
-.form-control:focus {
-    box-shadow: none;
-    border: 2px solid red
-}
-
-.validate {
-    border-radius: 20px;
-    height: 40px;
-    background-color: red;
-    border: 1px solid red;
-    width: 140px
-}
-			</style>
-			<!-- try -->
 		</div>
 	</section>
+
+	<!-- The Modal -->
+	<div class="modal" id="myModal">
+		<form action="">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+
+		      <!-- Modal body -->
+		      <div class="modal-body pt-4">
+		        <h3 align="center" class="text-success font-weight-bold">Verify OTP</h3>
+		        <div class="form-group mx-5">
+		        	<input type="text" min="4" class="form-control mt-4 otp" id="otp" name="otp">	        	
+		        </div>
+		      </div>
+
+		      <!-- Modal footer -->
+		      <div class="modal-footer" align="center">
+		        <button type="button" class="btn btn-primary rounded-pill w-sm-75 d-block mx-auto verifyOtp">Verify</button>
+		        <button type="button" class="btn btn-danger rounded-pill w-sm-75 d-block mx-auto" data-dismiss="modal">Later</button>
+		      </div>
+		    </div>
+		  </div>
+		</form>
+	</div>
+	<!-- success -->
+	<div class="modal" id="myModalSuccess">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <!-- Modal body -->
+	      <div class="modal-body pt-4">
+	        <h3 align="center" class="text-success font-weight-bold">Your number successfully Registered</h3>
+	      </div>
+	      <!-- Modal footer -->
+	      <div class="modal-footer" align="center">
+	        <button type="button" class="btn btn-success rounded-pill w-sm-75 d-block mx-auto" data-dismiss="modal">Thanks</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- failure -->
+	<div class="modal" id="myModalFailure">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <!-- Modal body -->
+	      <div class="modal-body pt-4">
+	        <h3 align="center" class="text-danger font-weight-bold">Wrong OTP</h3>
+	      </div>
+	      <!-- Modal footer -->
+	      <div class="modal-footer" align="center">
+	        <button type="button" class="btn btn-danger rounded-pill w-sm-75 d-block mx-auto" data-dismiss="modal">try Again</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	<!-- JQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -114,10 +105,7 @@ input[type=number]::-webkit-outer-spin-button {
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-
-
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+	<!-- OTP validation -->
 	<script>
 		document.addEventListener("DOMContentLoaded", function (event) {
 		  function OTPInput() {
@@ -145,7 +133,56 @@ input[type=number]::-webkit-outer-spin-button {
 		  }
 		  OTPInput();
 		});
+	</script>
+	<!-- send OTP -->
+	<script>
+		var link = window.location.href.split("?")[1];
+		if(link === undefined){
+			window.location.replace("index.html");
+		}else{
+			var linkSplit = link.split("&");
 
+			// Getting param(name)
+			var name = linkSplit[0].split("name=")[1];
+			var phone = linkSplit[1].split("phone=")[1];
+			var pincode = linkSplit[2].split("pincode=")[1];
+			var qr_code = linkSplit[3].split("qr_code=")[1];
+
+			if(phone === undefined){
+				window.location.replace("index.html");
+			}else{
+				// Send OTP
+				let personPhone = { "data":{"phone_number": phone,"send_otp_on_non_prod":false} }
+		        $.ajax({
+		            url: 'https://core.api.agrevolution.in/auth/otp?app_code=dehaat_farmer',
+		            type: 'post',
+		            dataType: 'json',
+		            contentType: 'application/json',
+		            data: JSON.stringify(personPhone)
+			    });
+			}
+		}
+
+		// Verify OTP
+	    $(".verifyOtp").click(function () {
+			let personOtp = { "data":{"phone_number": phone,"otp":$('.first').val()+$('.second').val()+$('.third').val()+$('.fourth').val()} }
+	        $.ajax({
+	            url: 'https://core.api.agrevolution.in/auth/login?app_code=dehaat_farmer',
+	            type: 'post',
+	            dataType: 'json',
+	            contentType: 'application/json',
+	            success: function (data) {
+	            	// console.log(data);
+	            	var token = JSON.stringify(data);
+	            	console.log(data.auth_token);
+	                // window.location.replace("thanks.html");
+	            },
+	            error: function(XMLHttpRequest, data, errorThrown) {
+	            	$('#myModalFailure').modal('show');
+			    },
+	            data: JSON.stringify(personOtp)
+	        });
+	    });
 	</script>
 </body>
 </html>
