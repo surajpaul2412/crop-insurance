@@ -19,7 +19,7 @@
 <body class="bg-grey">
 	<section>
 		<div class="px-4 height-10">
-			<img src="img/logo-green.png" width="120px" alt="logo">
+			<!-- <img src="img/logo-green.png" width="120px" alt="logo"> -->
 		</div>
 		<div class="px-4 py-4" align="center" style="max-width: 400px;margin: 0 auto;">
 			<img src="img/otp.png" class="py-5" width="30%">
@@ -172,12 +172,31 @@
 	            dataType: 'json',
 	            contentType: 'application/json',
 	            success: function (data) {
-	            	// console.log(data);
-	            	var token = JSON.stringify(data);
-	            	console.log(data.auth_token);
-	                // window.location.replace("thanks.html");
+	            	var auth_token = data.data.auth_token;
+	            	// Create policy with QR codes
+	            	var qr_codeArray = [];
+	            	qr_codeArray[0] = qr_code;
+
+	            	let personPolicy = { "qr_codes": qr_codeArray,"pincode":pincode}
+	            	$.ajax({
+					  url: "https://kheti.api.agrevolution.in/insurance/v1/qr_code",
+					  type: 'post',
+					  dataType: 'json',
+					  contentType: 'application/json',
+					  headers: {"Authorization": 'Bearer ' + auth_token},
+					  success: function (data){
+					  	alert("succ");
+					  	console.log(data);
+					  	// window.location.replace("thanks.html");
+					  },
+					  error: function(data){
+					  	alert("err");
+					  	console.log(data);
+					  },
+					  data: JSON.stringify(personPolicy)
+					});
 	            },
-	            error: function(XMLHttpRequest, data, errorThrown) {
+	            error: function(data, errorThrown) {
 	            	$('#myModalFailure').modal('show');
 			    },
 	            data: JSON.stringify(personOtp)
