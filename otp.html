@@ -154,9 +154,16 @@
 		        }else if(key === 2){
 		        	pincode = val.split("pincode=")[1];
 		        }else{
-		        	qr_codeArray[key-3] = val.split("qr_code=")[1];
+		        	if(val === undefined){
+		        	}else{
+		        		qr_codeArray[key-3] = val.split("qr_code=")[1];
+		        	}		        	
 		        }
 		    });
+
+		    console.log(qr_codeArray);
+		    alert('done');
+		    alert('done-end');
 
 			if(phone === undefined){
 				window.location.replace("index.html");
