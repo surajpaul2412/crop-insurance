@@ -143,11 +143,20 @@
 		}else{
 			var linkSplit = link.split("&");
 
-			// Getting param(name)
-			var name = linkSplit[0].split("name=")[1];
-			var phone = linkSplit[1].split("phone=")[1];
-			var pincode = linkSplit[2].split("pincode=")[1];
-			var qr_code = linkSplit[3].split("qr_code=")[1];
+			// Getting params
+			var name, phone, pincode, qr_codeArray = [];
+			$.each(linkSplit, function (key, val) {
+		        if(key === 0){
+		        	name = val.split("name=")[1];
+		        	name = name.replace('+',' ');
+		        }else if(key === 1){
+		        	phone = val.split("phone=")[1];
+		        }else if(key === 2){
+		        	pincode = val.split("pincode=")[1];
+		        }else{
+		        	qr_codeArray[key-3] = val.split("qr_code=")[1];
+		        }
+		    });
 
 			if(phone === undefined){
 				window.location.replace("index.html");
@@ -174,10 +183,7 @@
 	            contentType: 'application/json',
 	            success: function (data) {
 	            	var auth_token = data.data.auth_token;
-	            	// Create policy with QR codes
-	            	var qr_codeArray = [];
-	            	qr_codeArray[0] = qr_code;
-
+	            	// Create policy with QR codes(#PROD)
 	            	let personPolicy = { "qr_codes": qr_codeArray,"pincode":pincode}
 	            	$.ajax({
 					  url: "https://kheti.api.agrevolution.in/insurance/v1/qr_code",
