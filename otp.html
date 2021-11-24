@@ -185,9 +185,9 @@
 					  contentType: 'application/json',
 					  headers: {"Authorization": 'Bearer ' + auth_token},
 					  success: function (data){
-					  	alert("succ");
-					  	console.log(data);
-					  	// window.location.replace("thanks.html");
+						console.log(data);
+					  	alert("succ");					  	
+					  	window.location.replace("thanks.html");
 					  },
 					  error: function(data){
 					  	alert("err");
