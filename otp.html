@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
 	<title>OTP Verify | DeHaat Insurance</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -19,7 +20,7 @@
 <body class="bg-grey">
 	<section>
 		<div class="px-4 height-10">
-			<!-- <img src="img/logo-green.png" width="120px" alt="logo"> -->
+			<img src="img/logo-green.png" width="120px" alt="logo">
 		</div>
 		<div class="px-4 py-4" align="center" style="max-width: 400px;margin: 0 auto;">
 			<img src="img/otp.png" class="py-5" width="30%">
@@ -185,12 +186,9 @@
 					  contentType: 'application/json',
 					  headers: {"Authorization": 'Bearer ' + auth_token},
 					  success: function (data){
-						console.log(data);
-					  	alert("succ");					  	
 					  	window.location.replace("thanks.html");
 					  },
 					  error: function(data){
-					  	alert("err");
 					  	console.log(data);
 					  },
 					  data: JSON.stringify(personPolicy)
