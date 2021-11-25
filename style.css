@@ -13,7 +13,7 @@
 .form-dotted{border-style: dashed !important;border: 1px solid #67696b;}
 .form-control{border: 1px solid #67696b;padding: 30px 20px !important;}
 .form-icon{position: absolute;top: 40%;left: 8%;}
-.scan-icon{position: absolute;top: 40%;left: 10%;}
+.scan-icon{position: absolute;top: 40%;left: 10%;cursor: pointer;}
 .pointer{cursor: pointer;}
 #QRCode{text-align: center;font-size: 25px;}
 .form-control{border: 2px solid #6FCF97 !important;}
@@ -34,7 +34,7 @@
 	.px-sm-4{padding-left: 1.5rem!important;padding-right: 1.5rem!important;}
 	.w-sm-75{width: 75%;}
 	.align-sm-center{text-align: center;}
-	.icon-pl{padding-left: 45px !important;}
+	.icon-pl{padding-left: 55px !important;}
 	.scan-pl{padding-left: 60px !important;}
 	.w-xs-100{width: 100%;}
 }
