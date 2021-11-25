@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <link rel="icon" type="image/x-icon" href="https://agrevolution.in/assets/frontend/images/favicon.png">
 	<title>DeHaat Insurance</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -19,7 +19,6 @@
 	<style>
 		input, label {vertical-align:middle}
 		.qrcode-text {padding-right:1.7em; margin-right:0}
-		/*.qrcode-text-btn {display:inline-block; background:url(https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat; height:1em; width:1.7em; margin-left:-1.7em; cursor:pointer}*/
 		.qrcode-text-btn > input[type=file] {position:absolute; overflow:hidden; width:1px; height:1px; opacity:0}
 	</style>
 </head>
@@ -82,9 +81,6 @@
 					</div> -->
 
 
-
-
-<!-- try -->
 <div class="form-group col-12 col-md-4">
 	<input type="text" placeholder="Scan QR Code" name="qr_code" class="qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl">
 	<label class="qrcode-text-btn scan-icon">
@@ -92,9 +88,12 @@
 		<input type="file" accept="image/*" capture="environment" onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex="-1">
 	</label>
 </div>
-
-
-<!-- try end -->
+				</div>
+<div class="row" id="append">
+	
+</div>
+				<div class="align-sm-center">
+					<a class="btn btn-primary rounded-pill w-sm-75 mt-4 add-more">Add More</a>
 				</div>
 				<div class="align-sm-center">
 					<button class="btn btn-success rounded-pill w-sm-75 mt-4" type="submit">submit</button>
@@ -103,19 +102,16 @@
 		</form>
 	</section>
 
-
-
-	
-	
-
 	<!-- JQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- Bootstrap tooltips -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+	<script src="qr_packed.js"></script>
 	<!-- custom jQuery -->
 	<script>
 		// QRCode getting from Url
@@ -132,14 +128,8 @@
 		$('#QRCodeRemove').click(function() {
 		    $('#QRCode').val('');
 		});
-	</script>
-
-
-
-	<!-- try script -->
-	<!-- <script src="https://dmla.github.io/jsqrcode/src/qr_packed.js"></script> -->
-	<script src="qr_packed.js"></script>
-	<script>
+		
+		// Scan QR Code runtime
 		function openQRCamera(node) {
 		  var reader = new FileReader();
 		  reader.onload = function() {
@@ -157,11 +147,16 @@
 		  };
 		  reader.readAsDataURL(node.files[0]);
 		}
-
 		function showQRIntro() {
 		  return confirm("Use your camera to take a picture of a QR code.");
 		}
 	</script>
-	<!-- try end script -->
+
+
+	<script>
+	$(".add-more").click(function(){
+		$("#append").append("<div class='form-group col-12 col-md-4'><input type='text' placeholder='Scan QR Code' name='qr_code' class='qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl'><label class='qrcode-text-btn scan-icon'><img src='img/scanner.png' width='30px'><input type='file' accept='image/*' capture='environment' onclick='return showQRIntro();' onchange='openQRCamera(this);' tabindex='-1'></label></div>");
+	});
+</script>
 </body>
 </html>

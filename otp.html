@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <link rel="icon" type="image/x-icon" href="https://agrevolution.in/assets/frontend/images/favicon.png">
 	<title>OTP Verify | DeHaat Insurance</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -26,7 +26,7 @@
 			<img src="img/otp.png" class="py-5" width="30%">
 			<h2 class="text-dark font-weight-bold">OTP Validation</h2>
 			<p>
-				A new OTP was generated and sent at [Date and Time] to [Farmer Name] on [Farmer Mobile number]. Please enter the latest verification code to proceed.
+				A new OTP was generated and sent at <span class="font-weight-bold" id="dateTime"></span> to <span class="font-weight-bold text-success" id="name"></span> on <span class="font-weight-bold text-success" id="mobile"></span>. Please enter the latest verification code to proceed.
 			</p>
 			<form action="">
 				<div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
@@ -36,70 +36,36 @@
 		            <input class="m-2 text-center form-control rounded fourth" type="text" id="fourth" maxlength="1" />
 		        </div>
 		        <div class="mt-4"> <button class="btn btn-success rounded-pill verifyOtp" type="button">Send OTP</button> </div>
-		        <div class="mt-4 d-none">
+		        <div class="mt-4">
 		        	<div class="text-grey font-weight-bold">Didn’t send OTP code?</div>
-		        	<a class="text-success font-weight-bold" href=""><u>Resend Code</u></a>
+		        	<a class='text-success font-weight-bold resendOtp' style="display: none;"><u>Resend Code</u></a>
+		        	<span id="timer">
+						00 : <span id="time">20</span>
+					</span>
 		        </div>
 			</form>
 		</div>
 	</section>
 
-	<!-- The Modal -->
-	<div class="modal" id="myModal">
-		<form action="">
-		  <div class="modal-dialog modal-dialog-centered">
-		    <div class="modal-content">
-
-		      <!-- Modal body -->
-		      <div class="modal-body pt-4">
-		        <h3 align="center" class="text-success font-weight-bold">Verify OTP</h3>
-		        <div class="form-group mx-5">
-		        	<input type="text" min="4" class="form-control mt-4 otp" id="otp" name="otp">	        	
-		        </div>
-		      </div>
-
-		      <!-- Modal footer -->
-		      <div class="modal-footer" align="center">
-		        <button type="button" class="btn btn-primary rounded-pill w-sm-75 d-block mx-auto verifyOtp">Verify</button>
-		        <button type="button" class="btn btn-danger rounded-pill w-sm-75 d-block mx-auto" data-dismiss="modal">Later</button>
-		      </div>
-		    </div>
-		  </div>
-		</form>
-	</div>
-	<!-- success -->
-	<div class="modal" id="myModalSuccess">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      <!-- Modal body -->
-	      <div class="modal-body pt-4">
-	        <h3 align="center" class="text-success font-weight-bold">Your number successfully Registered</h3>
-	      </div>
-	      <!-- Modal footer -->
-	      <div class="modal-footer" align="center">
-	        <button type="button" class="btn btn-success rounded-pill w-sm-75 d-block mx-auto" data-dismiss="modal">Thanks</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- failure -->
+	<!-- Modal Resp['failure'] -->
 	<div class="modal" id="myModalFailure">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
-	      <!-- Modal body -->
-	      <div class="modal-body pt-4">
-	        <h3 align="center" class="text-danger font-weight-bold">Wrong OTP</h3>
-	      </div>
-	      <!-- Modal footer -->
-	      <div class="modal-footer" align="center">
-	        <button type="button" class="btn btn-danger rounded-pill w-sm-75 d-block mx-auto" data-dismiss="modal">try Again</button>
-	      </div>
+	    <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		    	<div class="row px-3 py-3">
+		    		<div class="col-7" align="left">
+		    			OTP verification failed.
+		    		</div>
+		    		<div class="col-5" align="right">
+		    			<a  data-dismiss="modal" class="text-black font-weight-bold"><u>Retry</u></a>
+		    		</div>
+		    	</div>
+		    </div>
 	    </div>
-	  </div>
 	</div>
 
 	<!-- JQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- Bootstrap tooltips -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
@@ -108,6 +74,16 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 	<!-- OTP validation -->
 	<script>
+		const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+		var currentdate = new Date(); 
+    	var datetime = currentdate.getDate() + "-"
+                + (monthNames[currentdate.getMonth()])  + "-" 
+                + currentdate.getFullYear() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes();
+        $('#dateTime').text(datetime);
+
+		// OTP input[num] validator
 		document.addEventListener("DOMContentLoaded", function (event) {
 		  function OTPInput() {
 		    const inputs = document.querySelectorAll("#otp > *[id]");
@@ -134,9 +110,8 @@
 		  }
 		  OTPInput();
 		});
-	</script>
-	<!-- send OTP -->
-	<script>
+
+		// Send OTP
 		var link = window.location.href.split("?")[1];
 		if(link === undefined){
 			window.location.replace("index.html");
@@ -156,10 +131,21 @@
 		        }else{
 		        	if(val === undefined){
 		        	}else{
-		        		qr_codeArray[key-3] = val.split("qr_code=")[1];
+		        		if(val.split("qr_code=")[1] != ''){
+		        			qr_codeArray[key-3] = val.split("qr_code=")[1];
+		        		}
 		        	}		        	
 		        }
 		    });
+
+			// QR code count checker
+		    if(qr_codeArray.length === 0){
+		    	alert("Please scan atleast 1 QR code");
+		    	window.location.replace("index.html");
+		    }
+
+		    $("#name").text(name);
+		    $("#mobile").text(phone);
 
 			if(phone === undefined){
 				window.location.replace("index.html");
@@ -175,6 +161,54 @@
 			    });
 			}
 		}
+
+		// Resend OTP CountDown
+		var counter = 60;
+		var interval = setInterval(function() {
+		    counter--;
+		    // Display 'counter' wherever you want to display it.
+		    if (counter <= 0) {
+		     	clearInterval(interval);
+		     	$('#timer').text("");
+		      	$('.resendOtp').css('display','block');
+		        return;
+		    }else{
+		    	$('#time').text(counter);
+		      	console.log("Timer --> " + counter);
+		    }
+		}, 1000);
+
+		// Resend OTP
+		$(".resendOtp").click(function(){
+			let personPhone = { "data":{"phone_number": phone,"send_otp_on_non_prod":false} }
+	        $.ajax({
+	            url: 'https://core.api.agrevolution.in/auth/otp?app_code=dehaat_farmer',
+	            type: 'post',
+	            dataType: 'json',
+	            contentType: 'application/json',
+	            success: function (data){
+		      		$('.resendOtp').css('display','none');		      		
+					var counter = 60;
+					var interval = setInterval(function() {
+					    counter--;
+					    // Display 'counter' wherever you want to display it.
+					    if (counter <= 0) {
+					     	clearInterval(interval);
+					     	$('#timer').text("");
+					      	$('.resendOtp').css('display','block');  
+					        return;
+					    }else{
+					    	$('#time').text(counter);
+					      	$('#timer').text("00 : " + counter);
+					    }
+					}, 1000);
+				},
+				error: function(data){
+					alert("Failed to resend OTP ! Please check your Mobile number.");
+				},
+	            data: JSON.stringify(personPhone)
+		    });
+		});
 
 		// Verify OTP
 	    $(".verifyOtp").click(function () {
@@ -199,6 +233,7 @@
 					  },
 					  error: function(data){
 					  	console.log(data);
+					  	window.location.replace("thanks.html");
 					  },
 					  data: JSON.stringify(personPolicy)
 					});

@@ -1,21 +1,6 @@
 /* Packed with Google Closure
 *
-* Ported to JavaScript by Lazar Laszlo 2011 
-* lazarsoft@gmail.com, www.lazarsoft.info
-*
-* Copyright 2007 ZXing authors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+* <script src="https://dmla.github.io/jsqrcode/src/qr_packed.js"></script>
 */
 var qrcode=function(){"use strict";function a(h,b){this.count=h;this.dataCodewords=b;this.__defineGetter__("Count",function(){return this.count});this.__defineGetter__("DataCodewords",function(){return this.dataCodewords})}function f(h,b,e){this.ecCodewordsPerBlock=h;this.ecBlocks=e?[b,e]:Array(b);this.__defineGetter__("ECCodewordsPerBlock",function(){return this.ecCodewordsPerBlock});this.__defineGetter__("TotalECCodewords",function(){return this.ecCodewordsPerBlock*this.NumBlocks});this.__defineGetter__("NumBlocks",
 function(){for(var d=0,c=0;c<this.ecBlocks.length;c++)d+=this.ecBlocks[c].length;return d});this.getECBlocks=function(){return this.ecBlocks}}function k(h,b,e,d,c,a){this.versionNumber=h;this.alignmentPatternCenters=b;this.ecBlocks=[e,d,c,a];h=0;b=e.ECCodewordsPerBlock;e=e.getECBlocks();for(d=0;d<e.length;d++)c=e[d],h+=c.Count*(c.DataCodewords+b);this.totalCodewords=h;this.__defineGetter__("VersionNumber",function(){return this.versionNumber});this.__defineGetter__("AlignmentPatternCenters",function(){return this.alignmentPatternCenters});
