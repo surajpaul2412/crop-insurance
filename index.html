@@ -29,7 +29,7 @@
 		</div>
 		<div class="container height-md-40 d-flex align-items-center justify-content-center">
 			<div class="text-white" align="center">
-				<h1 class="font-weight-bold">Free Insurance Enrollment</h1>
+				<h1 class="font-weight-bold">मुफ़्त बीज अंकुरण बीमा</h1>
 				<div class="font-weight-bold">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt odio a eros viverra, quis<br>cursus est consectetur. Ut tincidunt ullamcorper tristique.
 				</div>
@@ -39,18 +39,18 @@
 	<section class="container my-5" style="max-width: 1150px;">
 		<form action="otp.html" method="GET" class="bg-white">
 			<div class="form-group px-5 px-sm-4 pt-5 pb-1">
-				<div class="text-black font-weight-normal">Enter Your Basic Detail</div>
+				<div class="text-black font-weight-normal">अपना मूल विवरण दर्ज करें</div>
 				<div class="row">
 					<div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control mt-3 py-4 icon-pl" name="name" placeholder="Enter your namer*" required>
+						<input type="text" class="form-control mt-3 py-4 icon-pl" name="name" placeholder="अपना नाम दर्ज करें*" required>
 						<img src="img/user.png" width="30px" class="form-icon">
 					</div>
 					<div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control mt-3 py-4 icon-pl" name="phone" placeholder="Enter phone number*" required>
+						<input type="text" class="form-control mt-3 py-4 icon-pl" name="phone" placeholder="अपना मोबाइल नंबर डालें*" required>
 						<img src="img/phone.png" width="30px" class="form-icon">
 					</div>
 					<div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control mt-3 py-4 icon-pl" name="pincode" placeholder="Enter your Pincode*" required>
+						<input type="text" class="form-control mt-3 py-4 icon-pl" name="pincode" placeholder="अपना पिनकोड दर्ज करें*" required>
 						<img src="img/loc.png" width="30px" class="form-icon">
 					</div>
 				</div>
@@ -60,10 +60,10 @@
 				<div class="text-black font-weight-normal">Scanned Code</div>
 				<div class="row" id="embedQrCode">				
 					<div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control form-dotted mt-3 w-md-25 w-xs-100 font-weight-bold text-black" id="QRCode" name="qr_code" placeholder="Your QR Code">
+						<input type="text" class="form-control form-dotted mt-3 w-md-25 w-xs-100 font-weight-bold text-black" id="QRCode" name="qr_code" placeholder="क्यूआर कोड">
 						<div class="mt-3">
 							<div id="QRCodeRemove" class="text-danger font-weight-bold d-flex align-items-center pointer">
-								<span><img src="img/cross.png" class="mr-1" width="20px"></span>Remove code
+								<span><img src="img/cross.png" class="mr-1" width="20px"></span> कोड हटाएं
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 			</div>
 			<hr>
 			<div class="form-group px-5 px-sm-4 py-4">
-				<div class="text-black font-weight-normal">Add More Coupon Code</div>
+				<div class="text-black font-weight-normal">और कोड दर्ज करें</div>
 				<div class="row">
 
 
@@ -82,7 +82,7 @@
 
 
 <div class="form-group col-12 col-md-4">
-	<input type="text" placeholder="Scan QR Code" name="qr_code" class="qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl">
+	<input type="text" placeholder="स्कैन क्यू आर कोड" name="qr_code" class="qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl">
 	<label class="qrcode-text-btn scan-icon">
 		<img src="img/scanner.png" width="30px">
 		<input type="file" accept="image/*" capture="environment" onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex="-1">
@@ -93,17 +93,16 @@
 	
 </div>
 				<div class="align-sm-center">
-					<a class="btn btn-primary rounded-pill w-sm-75 mt-4 add-more">Add More</a>
+					<a class="btn btn-primary rounded-pill w-sm-75 mt-4 add-more"> + और कोड दर्ज करें</a>
 				</div>
 				<div class="align-sm-center">
-					<button class="btn btn-success rounded-pill w-sm-75 mt-4" type="submit">submit</button>
+					<button class="btn btn-success rounded-pill w-sm-75 mt-4" type="submit">आगे बढ़े</button>
 				</div>
 			</div>
 		</form>
 	</section>
 
 	<!-- JQuery -->
-	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- Bootstrap tooltips -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
@@ -155,7 +154,7 @@
 
 	<script>
 	$(".add-more").click(function(){
-		$("#append").append("<div class='form-group col-12 col-md-4'><input type='text' placeholder='Scan QR Code' name='qr_code' class='qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl'><label class='qrcode-text-btn scan-icon'><img src='img/scanner.png' width='30px'><input type='file' accept='image/*' capture='environment' onclick='return showQRIntro();' onchange='openQRCamera(this);' tabindex='-1'></label></div>");
+		$("#append").append("<div class='form-group col-12 col-md-4'><input type='text' placeholder='स्कैन क्यू आर कोड' name='qr_code' class='qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl'><label class='qrcode-text-btn scan-icon'><img src='img/scanner.png' width='30px'><input type='file' accept='image/*' capture='environment' onclick='return showQRIntro();' onchange='openQRCamera(this);' tabindex='-1'></label></div>");
 	});
 </script>
 </body>
