@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/x-icon" href="https://agrevolution.in/assets/frontend/images/favicon.png">
-	<title>OTP Verify | DeHaat Insurance</title>
+	<title>OTP Verify | DeHaat - Crop Insurance</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 	<!-- Google Fonts -->
@@ -25,9 +25,7 @@
 		<div class="px-4 py-4" align="center" style="max-width: 400px;margin: 0 auto;">
 			<img src="img/otp.png" class="py-5" width="30%">
 			<h2 class="text-dark font-weight-bold">OTP Validation</h2>
-			<p>
-				A new OTP was generated and sent at <span class="font-weight-bold" id="dateTime"></span> to <span class="font-weight-bold text-success" id="name"></span> on <span class="font-weight-bold text-success" id="mobile"></span>. Please enter the latest verification code to proceed.
-			</p>
+			<p>A new OTP was generated and sent at<span class="font-weight-bold" id="dateTime"></span> to<span class="font-weight-bold text-success" id="name"></span> on<span class="font-weight-bold text-success" id="mobile"></span>. Please enter the latest verification code to proceed.</p>
 			<form action="">
 				<div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
 		            <input class="m-2 text-center form-control rounded first" type="text" id="first" maxlength="1" />
@@ -37,7 +35,7 @@
 		        </div>
 		        <div class="mt-4"> <button class="btn btn-success rounded-pill verifyOtp" type="button">Send OTP</button> </div>
 		        <div class="mt-4">
-		        	<div class="text-grey font-weight-bold">Didn’t send OTP code?</div>
+		        	<div class="text-grey font-weight-bold">Can't receive OTP yet?</div>
 		        	<a class='text-success font-weight-bold resendOtp' style="display: none;"><u>Resend Code</u></a>
 		        	<span id="timer">
 						00 : <span id="time">20</span>
@@ -64,7 +62,6 @@
 	</div>
 
 	<!-- JQuery -->
-	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- Bootstrap tooltips -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
@@ -93,9 +90,9 @@
 		          inputs[i].value = "";
 		          if (i !== 0) inputs[i - 1].focus();
 		        } else {
-		          if (i === inputs.length - 1 && inputs[i].value !== "") {
+		          if(i === inputs.length - 1 && inputs[i].value !== ""){
 		            return true;
-		          } else if (event.keyCode > 47 && event.keyCode < 58) {
+		          } else if (event.keyCode > 47 && event.keyCode < 58){
 		            inputs[i].value = event.key;
 		            if (i !== inputs.length - 1) inputs[i + 1].focus();
 		            event.preventDefault();
@@ -115,7 +112,7 @@
 		var link = window.location.href.split("?")[1];
 		if(link === undefined){
 			window.location.replace("index.html");
-		}else{
+		} else{
 			var linkSplit = link.split("&");
 
 			// Getting params
@@ -124,13 +121,13 @@
 		        if(key === 0){
 		        	name = val.split("name=")[1];
 		        	name = name.replace('+',' ');
-		        }else if(key === 1){
+		        } else if(key === 1){
 		        	phone = val.split("phone=")[1];
-		        }else if(key === 2){
+		        } else if(key === 2){
 		        	pincode = val.split("pincode=")[1];
-		        }else{
+		        } else{
 		        	if(val === undefined){
-		        	}else{
+		        	} else{
 		        		if(val.split("qr_code=")[1] != ''){
 		        			qr_codeArray[key-3] = val.split("qr_code=")[1];
 		        		}
@@ -149,7 +146,7 @@
 
 			if(phone === undefined){
 				window.location.replace("index.html");
-			}else{
+			} else{
 				// Send OTP
 				let personPhone = { "data":{"phone_number": phone,"send_otp_on_non_prod":false} }
 		        $.ajax({
@@ -172,9 +169,8 @@
 		     	$('#timer').text("");
 		      	$('.resendOtp').css('display','block');
 		        return;
-		    }else{
+		    } else{
 		    	$('#time').text(counter);
-		      	console.log("Timer --> " + counter);
 		    }
 		}, 1000);
 
@@ -197,7 +193,7 @@
 					     	$('#timer').text("");
 					      	$('.resendOtp').css('display','block');  
 					        return;
-					    }else{
+					    } else{
 					    	$('#time').text(counter);
 					      	$('#timer').text("00 : " + counter);
 					    }
@@ -218,6 +214,7 @@
 	            type: 'post',
 	            dataType: 'json',
 	            contentType: 'application/json',
+	            data: JSON.stringify(personOtp),
 	            success: function (data) {
 	            	var auth_token = data.data.auth_token;
 	            	// Create policy with QR codes(#PROD)
@@ -232,16 +229,14 @@
 					  	window.location.replace("thanks.html");
 					  },
 					  error: function(data){
-					  	console.log(data);
-					  	window.location.replace("thanks.html");
+					  	alert("Please check your Qr Code.");
 					  },
 					  data: JSON.stringify(personPolicy)
 					});
 	            },
 	            error: function(data, errorThrown) {
 	            	$('#myModalFailure').modal('show');
-			    },
-	            data: JSON.stringify(personOtp)
+			    }
 	        });
 	    });
 	</script>

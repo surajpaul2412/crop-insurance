@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/x-icon" href="https://agrevolution.in/assets/frontend/images/favicon.png">
-	<title>DeHaat Insurance</title>
+	<title>DeHaat - Crop Insurance</title>
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 	<!-- Google Fonts -->
@@ -30,9 +30,6 @@
 		<div class="container height-md-40 d-flex align-items-center justify-content-center">
 			<div class="text-white" align="center">
 				<h1 class="font-weight-bold">मुफ़्त बीज अंकुरण बीमा</h1>
-				<div class="font-weight-bold">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt odio a eros viverra, quis<br>cursus est consectetur. Ut tincidunt ullamcorper tristique.
-				</div>
 			</div>
 		</div>
 	</section>
@@ -73,25 +70,15 @@
 			<div class="form-group px-5 px-sm-4 py-4">
 				<div class="text-black font-weight-normal">और कोड दर्ज करें</div>
 				<div class="row">
-
-
-					<!-- <div class="form-group col-12 col-md-4">
-						<input type="text" class="form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl" name="qr_code" placeholder="Scan QR Code">
-						<img src="img/scanner.png" width="30px" class="scan-icon">
-					</div> -->
-
-
-<div class="form-group col-12 col-md-4">
-	<input type="text" placeholder="स्कैन क्यू आर कोड" name="qr_code" class="qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl">
-	<label class="qrcode-text-btn scan-icon">
-		<img src="img/scanner.png" width="30px">
-		<input type="file" accept="image/*" capture="environment" onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex="-1">
-	</label>
-</div>
+					<div class="form-group col-12 col-md-4">
+						<input type="text" placeholder="स्कैन क्यू आर कोड" name="qr_code" class="qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl">
+						<label class="qrcode-text-btn scan-icon">
+							<img src="img/scanner.png" width="30px">
+							<input type="file" accept="image/*" capture="environment" onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex="-1">
+						</label>
+					</div>
 				</div>
-<div class="row" id="append">
-	
-</div>
+				<div class="row" id="append"></div>
 				<div class="align-sm-center">
 					<a class="btn btn-primary rounded-pill w-sm-75 mt-4 add-more"> + और कोड दर्ज करें</a>
 				</div>
@@ -119,7 +106,7 @@
 		var secondLevelLocation = pathArray[0];
 		if(pathArray[1] === undefined){
 			$('#QRCode').val('');
-		}else{
+		} else{
 			document.getElementById("QRCode").value = pathArray[1];
 		}
 		
@@ -136,9 +123,8 @@
 		    qrcode.callback = function(res) {
 		      if(res instanceof Error) {
 		        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
-		      } else {
+		      } else{
 		      	res = res.split("=")[1];
-		      	// console.log(res);
 		        node.parentNode.previousElementSibling.value = res;
 		      }
 		    };
@@ -149,13 +135,12 @@
 		function showQRIntro() {
 		  return confirm("Use your camera to take a picture of a QR code.");
 		}
+
+		// append QR scanner 
+		$(".add-more").click(function(){
+			var appendHtml = "<div class='form-group col-12 col-md-4'><input type='text' placeholder='स्कैन क्यू आर कोड' name='qr_code' class='qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl'><label class='qrcode-text-btn scan-icon'><img src='img/scanner.png' width='30px'><input type='file' accept='image/*' capture='environment' onclick='return showQRIntro();' onchange='openQRCamera(this);' tabindex='-1'></label></div>";
+			$("#append").append(appendHtml);
+		});
 	</script>
-
-
-	<script>
-	$(".add-more").click(function(){
-		$("#append").append("<div class='form-group col-12 col-md-4'><input type='text' placeholder='स्कैन क्यू आर कोड' name='qr_code' class='qrcode-text form-control mt-3 w-md-25 w-xs-100 py-4 scan-pl'><label class='qrcode-text-btn scan-icon'><img src='img/scanner.png' width='30px'><input type='file' accept='image/*' capture='environment' onclick='return showQRIntro();' onchange='openQRCamera(this);' tabindex='-1'></label></div>");
-	});
-</script>
 </body>
 </html>
